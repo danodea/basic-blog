@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}A Bad Blog{% endblock title %}</title>
+	<style type="text/css">
+		body {
+			font-family: sans-serif;
+			width: 800px;
+			margin: 0 auto;
+			padding: 25px 0;
+			background: #eee;
+		}
+
+		.content {
+			background: white;
+			padding: 5px;
+		}
+
+		.title-link {
+			display: block;
+			text-align: center;
+			font-size: 26px;
+			margin-bottom: 25px;
+		}
+
+		a {
+			text-decoration: none;
+			color: black;
+		}
+
+		a:hover {
+			color: blue;
+		}
+
+		.footer {
+			font-size: 10px;
+			margin-top: 10px;
+			text-align: center;
+		}
+
+		{% block style %}{% endblock style %}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<a class="title-link" href="/">A Bad Blog</a>
+
+		{% block content %}
+		{% endblock content %}
+
+		<div class="footer">
+			<hr>
+			<a href="/">Home</a> |
+			<a href="/newpost">New Post</a> |
+			<a href="/signup">Signup</a> |
+			<a href="/login">Login</a> |
+			<a href="/logout">Logout</a>
+		</div>
+	</div>
+</body>
+</html>

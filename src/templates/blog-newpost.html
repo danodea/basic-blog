@@ -1,0 +1,77 @@
+{% extends "blog-main.html" %}
+
+{% block title %}A Bad New Post{% endblock title %}
+
+{% block style %}
+
+.title {
+	text-align: center;
+}
+
+h1 {
+	margin-top: 0;
+	padding: 2px;
+	display: inline-block;
+	border: 1px dashed green;
+	text-decoration: blink;
+}
+
+form {
+	padding: 5px;
+}
+
+label {
+	display: block;
+	text-align: center;
+}
+
+input[type=text] {
+	width: 95%;
+	margin: 4px 0;
+}
+
+textarea {
+	height: 400px;
+	width: 95%;
+	margin: 4px 0;
+}
+
+input[type=submit] {
+	color: blue;
+}
+
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+{% endblock style %}
+
+{% block content %}
+	<div class="title">
+		<h1>Create a Bad New Post</h1>
+	</div>
+
+	<form method="post">
+
+		<label>
+			<div>Subject:</div>
+			<input type="text" name="subject" value="{{ subject }}">
+		</label>
+
+		<label>
+			<div>Content:</div>
+			<textarea name="content">{{ content }}</textarea>
+		</label>
+
+		<label class="error">
+			{% if error %}
+			<div>Error:</div>
+			{% endif %}
+			<div>{{error}}</div>
+		</label>
+
+		<input type="submit">
+
+	</form>
+{% endblock content %}

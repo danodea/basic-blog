@@ -1,0 +1,11 @@
+{% extends "blog-main.html" %}
+
+{% block title %}A Bad Blog{% endblock title %}
+
+{% block content %}
+	{% for post in posts %}
+		<h1><a href='/{{post.key().id()}}'>{{post.subject}}</a></h1>
+		<p>{{post.content}}</p>
+		<hr>
+	{% endfor %}
+{% endblock content %}

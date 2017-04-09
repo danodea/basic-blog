@@ -1,0 +1,19 @@
+{% extends "blog-main.html" %}
+
+{% block title %}A Bad Signup Page{% endblock title %}
+
+{% block content %}
+	<h2>Signup</h2>
+
+	<form method="post">
+		<label>Username: <input type="text" name="username" value="{{username}}"></label>{{errors.username}}
+		<br>
+		<label>Password: <input type="password" name="password"></label>{{errors.password}}
+		<br>
+		<label>Verify Password:<input type="password" name="verify"></label>{{errors.verify}}
+		<br>
+		<label>Email (optional):<input type="text" name="email" value="{{email}}"></label>{{errors.email}}
+		<br>
+		<input type="submit">
+	</form>
+{% endblock content %}
