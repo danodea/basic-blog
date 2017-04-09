@@ -1,5 +1,5 @@
 from basehandler import BaseHandler
-import re
+from utilities import validation
 
 class Signup(BaseHandler):
     def get(self):
@@ -12,16 +12,16 @@ class Signup(BaseHandler):
         email = self.request.get('email')
         errors = {}
 
-        if not self.validate_username(username):
+        if not validation.validate_username(username):
             errors['username'] = "Please enter a valid username"
 
-        if not self.validate_password(password):
+        if not validation.validate_password(password):
             errors['password'] = "Please enter a valid password"
 
         if password != verify:
             errors['verify'] = "Passwords must match"
 
-        if email and not self.validate_email(email):
+        if email and not validation.validate_email(email):
             errors['email'] = "Please enter a valid email (or no email!)"
 
         if errors:
@@ -29,16 +29,3 @@ class Signup(BaseHandler):
         else:
             self.response.headers.add('Set-Cookie', 'username=' + str(username) + '; Path=/')
             self.redirect('/welcome')
-
-    USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-    PASSWORD_RE = re.compile(r"^.{3,20}$")
-    EMAIL_RE = re.compile(r"^[\S]+@[\S]+.[\S]+$")
-
-    def validate_username(self, input):
-        return self.USER_RE.match(input)
-
-    def validate_password(self, input):
-        return self.PASSWORD_RE.match(input)
-
-    def validate_email(self, input):
-        return self.EMAIL_RE.match(input)
